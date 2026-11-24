@@ -15,6 +15,15 @@ public class GalleryService {
     private final Map<String, Account> accounts = new HashMap<>();
     private final SecureRandom secureRandom = new SecureRandom();
 
+    /**
+     * Registra un nuovo utente all'interno dell'applicativo.
+     * Normalizza il nome utente ed esegue un controllo sulla password.
+     * Crea un hash della password prima di salvarla.
+     *
+     * @param username nome dell'account da registrare.
+     * @param password la password dell'account.
+     * @throws IllegalStateException se l'account con questo nome utente esisste già.
+     */
     public void register(String username, String password) {
         String normalizedUsername = normalizeUsername(username);
         validatePassword(password);
@@ -33,6 +42,13 @@ public class GalleryService {
         }
     }
 
+    /**
+     * Accede al profilo dell'utente.
+     *
+     * @param username Il nome utente con la quale si vuole accedere.
+     * @param password La password del rispettivo nome utente.
+     * @return Restituisce rispettivamente true o false se il login ha successo o meno
+     */
     public boolean login(String username, String password) {
         if (username == null || password == null) {
             return false;
